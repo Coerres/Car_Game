@@ -165,6 +165,39 @@ void play(){
         if(ch==27){
             break;
         }
+    }
+
+    drawCar();
+    drawEnemy(0);
+    drawEnemy(1);
+    if( collision() == 1 ){
+        gameover();
+        return;
+    }
+    Sleep(50);
+    eraseCar();
+    eraseEnemy(0);
+    eraseEnemy(1);
+
+        if( enemyY[0] == 10 )
+            if( enemyFlag[1] == 0 )
+                enemyFlag[1] = 1;
+
+        if( enemyFlag[0] == 1 )
+            enemyY[0] += 1; 
+
+        if( enemyFlag[1] == 1 )
+            enemyY[1] += 1;
+
+        if( enemyY[0] > SCREEN_HEIGHT-4 ){
+            resetEnemy(0);
+            score++;
+            updateScore();
+        }
+        if( enemyY[1] > SCREEN_HEIGHT-4 ){
+            resetEnemy(1);
+            score++;
+            updateScore();
         }
     }
 }
