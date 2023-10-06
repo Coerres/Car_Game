@@ -82,7 +82,7 @@ void drawCar(){
     }
 }
 void eraseCar(){
-    for(int i=0; i<4, i++){
+    for(int i=0; i<4, i++;){
         for(int j=0; j<4; j++){
             gotoxy(j+carPos, i+22); cout<<" ";
         }
@@ -112,3 +112,59 @@ void updateScore(){
     gotoxy(WIN_WIDTH + 7, 5);cout<<"Score: "<<score<<endl;
 }
 
+//instructions
+void instructions(){
+
+    system("cls");
+    cout<<"Instructions";
+    cout<<"\n----------------";
+    cout<<"\n Avoid Cars by moving left or right. ";
+    cout<<"\n\n Press 'a' to move left";
+    cout<<"\n Press 'd' to move right";
+    cout<<"\n Press 'escape' to exit";
+    cout<<"\n\nPress any key to go back to menu";
+    getch();
+}
+
+void play(){
+    carPos = -1 + WIN_WIDTH/2;
+    score = 0;
+    enemyFlag[0] = 1;
+    enemyFlag[1] = 0;
+    enemyY[0] = enemyY[1] = 1;
+
+    system("cls");
+    drawBorder();
+    updateScore();
+    genEnemy(0);
+    genEnemy(1);
+
+    gotoxy(WIN_WIDTH + 7, 2);cout<<"Car Game";
+    gotoxy(WIN_WIDTH + 6, 4);cout<<"----------";
+    gotoxy(WIN_WIDTH + 6, 6);cout<<"----------";
+    gotoxy(WIN_WIDTH + 7, 12);cout<<"Control ";
+    gotoxy(WIN_WIDTH + 7, 13);cout<<"-------- ";
+    gotoxy(WIN_WIDTH + 2, 14);cout<<" A Key - Left";
+    gotoxy(WIN_WIDTH + 2, 15);cout<<" D Key - Right";
+
+    gotoxy(18, 5);cout<<"Press any key to start";
+    getch();
+    gotoxy(18, 5);cout<<"                      ";
+
+    while(1){
+        if(kbhit()){
+            char ch = getch();
+            if( ch=='a' || ch=='A' ){
+                if( carPos > 18 )
+                    carPos -= 4;
+            }
+        if( ch=='d' || ch=='D' ){
+            if( carPos < 50 )
+                carPos += 4; 
+        }
+        if(ch==27){
+            break;
+        }
+        }
+    }
+}
