@@ -88,3 +88,27 @@ void eraseCar(){
         }
     }
 }
+
+//collision
+int collision(){
+    if( enemyY[0]+4 >= 23 ){
+        if( enemyX[0] + 4 - carPos >= 0 && enemyX[0] + 4 - carPos < 9  ){
+            return 1;
+        } 
+    }
+    return 0;
+}
+
+//gameover
+void gameover(){
+    system("cls");
+    cout<<endl;
+    cout<<"\t\t--------------------------"<<endl;
+    cout<<"\t\t-------- Game Over -------"<<endl;
+    cout<<"\t\t--------------------------"<<endl<<endl;
+    cout<<"\t\tPress any key to go back to menu.";
+}
+void updateScore(){
+    gotoxy(WIN_WIDTH + 7, 5);cout<<"Score: "<<score<<endl;
+}
+
